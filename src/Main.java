@@ -177,7 +177,8 @@ public class Main {
 
   // What is the time complexity of this method?
   // (assume the set and list have the same number of elements)
-  // O(N) where n is equal to the length of the wordSet hashset
+  // O(N * M) where n is equal to the length of the wordSet hashset
+  // and m is equal to the length of the wordList
   public static boolean hasCommon(HashSet<String> wordSet, ArrayList<String> wordList) {
     for(String word : wordSet) {
       if(wordList.contains(word)) {
@@ -191,7 +192,12 @@ public class Main {
   // What is the time complexity of your new solution?
   // YOUR ANSWER HERE
   public static boolean hasCommonEfficient(HashSet<String> wordSet, ArrayList<String> wordList) {
-    return false;
+      for (String word : wordList) {
+          if (wordSet.contains(word)) {
+              return true;
+          }
+      }
+      return false;
   }
 
   // Suppose you are building a dashboard that displays real-time stock prices.
@@ -199,14 +205,20 @@ public class Main {
   // The prices will be updated frequently throughout the day, and you need to efficiently update
   // and access the current price for each stock. The order of the ticker symbols is not important.
   // What would be a good choice of data structure?
-  // YOUR ANSWER HERE
+  // 
+  // A good choice of data structure in this case would be a hashmap so that you can link the
+  // ticker symbol to the current price. HashMaps have a put method that lets you rewrite over
+  // the current value that is set to the key
 
   // Suppose you are building a music player application where users can create playlists.
   // Songs can be added to the end of the playlist in the order the user chooses, and the user can
   // skip to the next or previous song. Most operations involve adding songs and accessing them by
   // their position in the playlist.
   // What would be a good choice of data structure?
-  // YOUR ANSWER HERE
+  //
+  // A good choice of data structure for this problem would be an arrayList. That way you can store
+  // data and access it very easily, but the ArrayList can fluctate in size and appending another
+  // song at the end of the playlist would keep the time complexity relatively low.
 
   // Suppose you are developing a search feature that keeps track of the user's
   // recent search queries. You want to store the queries in the order they were made,
@@ -214,5 +226,9 @@ public class Main {
   // relatively small, and it is more important to preserve the order of the searches than
   // to optimize for fast lookups or deletions.
   // What would be a good choice of data structure?
-  // YOUR ANSWER HERE
+  //
+  // In this instance I would use a queue. Starting with the oldest searches and going up in 
+  // how recent it is I would add each search to a queue. That way you would definitley be able
+  // preserve the order. Since we aren't worried about lookups or deletions, that takes away the 
+  // few problems that using a queue creates.
 }
